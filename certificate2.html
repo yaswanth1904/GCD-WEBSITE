@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Certificate</title>
+    <style>
+        /* General Styling */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-image: url("https://t3.ftcdn.net/jpg/09/61/27/48/360_F_961274808_fX06eKzHJDCX9LO1Uew8YsL8Gk7RDZBu.jpg");
+            background-size: cover;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: auto;
+            margin: 20px;
+            flex-direction: column;
+        }
+
+        /* Certificate Styling */
+        .certificate-container {
+            background: white; /* Replace with your image URL */
+            background-size: cover; /* Cover the entire container */
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+            width: 900px;
+            height: 600px; /* Decreased height by 100px */
+            text-align: center;
+            margin-top: 20px;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .certificate {
+            padding: 30px;
+            border: 3px solid #205781;
+            border-radius: 16px;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.8); /* Semi-transparent white background for readability */
+        }
+
+        .certificate img {
+            width: 150px;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            color: #205781;
+            font-size: 24px;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        h1 {
+            font-size: 42px;
+            color: #205781;
+            margin: 15px 0;
+            letter-spacing: 1.5px;
+        }
+
+        h3 {
+            color: #205781;
+            font-size: 32px;
+            margin-bottom: 15px;
+            font-weight: bold;
+            letter-spacing: 1.2px;
+        }
+
+        p {
+            font-size: 20px;
+            margin: 8px 0;
+            font-weight: 500;
+        }
+
+        /* Signature Section */
+        .signature {
+            position: absolute;
+            padding-right: 20px;
+            bottom: 50px; /* Adjusted to make space for the download button */
+            right: 40px;
+            text-align: right;
+            font-size: 18px;
+            color: #777;
+            line-height: 1.2;
+        }
+
+        .signature p {
+            margin: 0;
+        }
+
+        .signature .name {
+            padding-right: 30px;
+            font-weight: bold;
+            color: #205781;
+            font-size: 20px;
+        }
+
+        /* Expiration and Certificate ID Section */
+        .cert-info {
+            position: absolute;
+            bottom: 70px; /* Adjusted to make space for the download button */
+            left: 40px;
+            text-align: left;
+            font-size: 18px;
+            color: #777;
+            line-height: 1.2;
+        }
+
+        .cert-info p {
+            margin: 0;
+            padding-left: 30px;
+        }
+
+        .cert-info .label {
+            padding-left: 20px;
+            font-weight: bold;
+            color: #205781;
+        }
+
+        /* QR Code Section */
+        .qr-code {
+            position: absolute;
+            bottom: 150px; /* Adjusted to move it higher */
+            padding-left: 20px;
+            left: 40px;
+            width: 70px; /* Decreased size */
+            height: 70px; /* Decreased size */
+        }
+
+        /* Download Button */
+        .download-button {
+            margin-top: 20px; /* Space above the button */
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #205781;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .download-button:hover {
+            background-color: #205781;
+        }
+    </style>
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+</head>
+<body class="bg-gradient-to-r from-pink-400 to-red-500 p-4 flex flex-col items-center">
+
+    <div class="certificate-container bg-cover bg-center rounded-xl shadow-2xl" id="certificate" style="background-image: url('https://example.com/path-to-your-background-image.jpg');">
+        <div class="certificate p-8 border-3 border-pink-400 rounded-lg bg-white/80 flex flex-col justify-center items-center">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Google_Cloud_logo.svg/768px-Google_Cloud_logo.svg.png?20210208232155" alt="Google Cloud Logo" class="w-36 mb-5" />
+            
+            <h2 class="text-2xl text-red-500 mb-4 font-bold">This acknowledges that</h2>
+            <h1 id="certName" class="text-4xl text-red-500 mb-3 font-extrabold tracking-wide">[Participant Name]</h1>
+            <p class="text-lg font-medium">has successfully completed the</p>
+            <h3 id="certCourse" class="text-3xl text-red-500 mb-4 font-bold tracking-tight">[Course Name]</h3>
+            <p class="text-lg font-medium">from</p>
+            <h3 id="certCollege" class="text-3xl text-red-500 mb-4 font-bold tracking-tight">[College Name]</h3>
+            
+            <div class="signature absolute bottom-16 right-10 text-right text-lg text-gray-700">
+                <p class="name font-bold text-red-500 text-xl">Erin Rifkin</p>
+                <p>Managing Director</p>
+                <p>Google Cloud Learning Services</p>
+            </div>
+
+            <div class="cert-info absolute bottom-16 left-10 text-left text-lg text-gray-700">
+                <p class="label font-bold text-red-500">Expiration Date:</p>
+                <p>Never expires</p>
+                <p class="label font-bold text-red-500">Certificate ID:</p>
+                <p>MAZmTZiJ</p>
+            </div>
+
+            <img class="qr-code absolute bottom-24 left-10 w-16 h-16" src="https://api.qrserver.com/v1/create-qr-code/?data=CertificateID:MAZmTZiJ&size=70x70" alt="QR Code" />
+        </div>
+    </div>
+
+    <button class="download-button mt-5 px-5 py-3 text-lg bg-pink-500 text-white border-none rounded-md cursor-pointer hover:bg-red-500 transition duration-300" id="downloadBtn">Download Certificate</button>
+
+    <script>
+        // Get URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const participantName = urlParams.get('participantName');
+        const course = urlParams.get('course');
+        const college = urlParams.get('college');
+
+        // Update certificate content
+        document.getElementById('certName').textContent = participantName;
+        document.getElementById('certCourse').textContent = course;
+        document.getElementById('certCollege').textContent = college;
+
+        // Download certificate as image
+        document.getElementById('downloadBtn').addEventListener('click', function() {
+            const element = document.getElementById('certificate');
+            const rect = element.getBoundingClientRect();
+            const scale = 2; // Increase for better resolution
+
+            html2canvas(element, { 
+                useCORS: true,
+                scale: scale,
+                }).then(function(canvas) {
+                // Create a link to download the image
+                const link = document.createElement('a');
+                link.href = canvas.toDataURL('image/png');
+                link.download = 'certificate.png';
+                link.click();
+            }).catch(err => {
+                console.error("Error downloading certificate:", err);
+                alert("Failed to download certificate. Please try again."); // User-friendly error message
+            });
+        });
+    </script>
+</body>
+</html>
